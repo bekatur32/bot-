@@ -1,14 +1,13 @@
 version: '3.8'
 
 services:
-  # Сервис для Django
   web:
     build:
       context: .
       dockerfile: Dockerfile
     command: gunicorn config.wsgi:application --bind 0.0.0.0:8000
     volumes:
-      - .:/app
+      - .:/app  # Монтируем проект в контейнер
     ports:
       - "8000:8000"
     environment:
@@ -16,13 +15,14 @@ services:
       - DJANGO_SECRET_KEY=${DJANGO_SECRET_KEY}
       - DJANGO_SETTINGS_MODULE=config.settings
 
-  # Сервис для бота
   bot:
     build:
       context: .
-      dockerfile: bot/Dockerfile  # Указываем Dockerfile для бота
+      dockerfile: bot/Dockerfile
     volumes:
-      - .:/app  # Монтируем всю директорию проекта
+      - .:/app  # Монтируем проект в контейнер
     environment:
       - BOT_API_TOKEN=${BOT_API_TOKEN}
       - DJANGO_SETTINGS_MODULE=config.settings
+    depends_on:
+      - web

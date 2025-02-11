@@ -5,7 +5,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 # Копируем файл requirements.txt
-COPY requirements.txt .
+COPY ../requirements.txt .
 
 # Устанавливаем зависимости
 RUN pip install --upgrade pip && pip install --no-use-pep517 -r requirements.txt
