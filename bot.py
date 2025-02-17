@@ -14,7 +14,7 @@ django.setup()
 from amin.models import Tovar
 
 
-BOT_API_TOKEN = '5512338198:AAF-9qznDE4x7IMJpu6jr7jMjAIetN_zrYM'
+BOT_API_TOKEN = '7342677552:AAF1ZTotSTb4ObFMvZUKElreZoqpslifpi0'
 
 bot = Bot(token=BOT_API_TOKEN)
 storage = MemoryStorage()
