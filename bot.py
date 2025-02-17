@@ -14,7 +14,7 @@ django.setup()
 from amin.models import Tovar
 
 
-BOT_API_TOKEN = '7342677552:AAF1ZTotSTb4ObFMvZUKElreZoqpslifpi0'
+BOT_API_TOKEN = '5512338198:AAF-9qznDE4x7IMJpu6jr7jMjAIetN_zrYM'
 
 bot = Bot(token=BOT_API_TOKEN)
 storage = MemoryStorage()
@@ -62,6 +62,11 @@ async def handle_catalog(callback_query: CallbackQuery):
     )
     await callback_query.answer()
 
+
+@router.callback_query(lambda c: c.data in ['sovet'])
+async def handle_callback_query(callback_query: types.CallbackQuery):
+    await  callback_query.message.answer('Боевые катаны – острые, закалённые, для тренировок и рубки.\n'
+                                         'Небоевые катаны – декоративные, для коллекции и интерьера.')
 
 @router.callback_query(lambda callback: callback.data.startswith("fight_katan"))
 async def handle_fight_katan(callback_query: CallbackQuery):
